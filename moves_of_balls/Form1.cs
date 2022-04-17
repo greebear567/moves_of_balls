@@ -24,7 +24,26 @@ namespace moves_of_balls
 
         private void panel1_MouseDown(object sender, MouseEventArgs e)
         {
-            a.AddCircle(e.Location);
+            Point some = new Point();
+            some.X = e.X;
+            some.Y = e.Y;
+            if (e.X < 100 )
+            {
+                some.X = 100;
+            } 
+            if ( e.Y < 100)
+            {
+                some.Y = 100;
+            }
+            if(e.X > panel1.Size.Width - 100)
+            {
+                some.X = panel1.Size.Width - 100;
+            }
+            if (e.Y > panel1.Size.Height - 100)
+            {
+                some.Y = panel1.Size.Height - 100;
+            }
+            a.AddCircle(some);
         }
     }
 }

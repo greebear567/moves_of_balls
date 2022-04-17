@@ -68,7 +68,6 @@ namespace moves_of_balls
                 _pos.Y += _dy;
                 return true;
             }
-
         }
 
         public void Animate(Graphics bg)
