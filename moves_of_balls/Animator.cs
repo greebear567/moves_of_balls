@@ -37,7 +37,7 @@ namespace moves_of_balls
         public void AddCircle(Point pos)
         {
             var c = new Circle(cSize, pos);
-            c.Animate();
+            c.Animate(_g);
             circs.Add(c);
         }
         public void Start()
@@ -55,10 +55,15 @@ namespace moves_of_balls
                     for (int i = 0; i < circs.Count; i++)
                     {
                         circs[i].Paint(tg);
+                        if (circs[i].num == 0)
+                        {
+                            circs[i].Clear(tg);
+                        }
                     }
                     bg.Render(g);
                     Thread.Sleep(30);
                 } while (true);
+
             });
             t.Start();
         }

@@ -14,7 +14,7 @@ namespace moves_of_balls
         private int _diameter;
         private int _dx;
         private int _dy;
-        private int num;
+        public int num;
         private Size _containerSize;
         private Thread? t;
         private Vector direction;
@@ -45,17 +45,18 @@ namespace moves_of_balls
             g.FillEllipse(b, _pos.X, _pos.Y, _diameter, _diameter);
         }
 
-        public bool Move()
+        public bool Move(Graphics bg)
         {
             //if ((_pos.X < _containerSize.Width - _diameter && _pos.Y < _containerSize.Height - _diameter) ||
             //    (_pos.X-_diameter < 0) ||
             //    (_pos.X < _containerSize.Width - _diameter && _pos.Y - _diameter < 0) ||
             //    (_pos.X - _diameter< 0 && _pos.Y - _diameter < 0) 
             //    )
-            if ((_pos.X<startPos.X % Math.Abs(_dx)) || _pos.X>_containerSize.Width-_diameter || _pos.Y< Math.Abs(_dy) || _pos.Y>_containerSize.Height-_diameter)
+            if ((_pos.X < startPos.X % Math.Abs(_dx)) || _pos.X > _containerSize.Width - _diameter || _pos.Y < Math.Abs(_dy) || _pos.Y > _containerSize.Height - _diameter)
             {
                 if (num == 0)
-                return false;
+                {
+                return false; }
                 num -= 1;
                 if (_pos.X < startPos.X % Math.Abs(_dx) || _pos.X > _containerSize.Width - _diameter)
                 _dx = -_dx;
@@ -74,7 +75,7 @@ namespace moves_of_balls
 
         }
 
-        public void Animate()
+        public void Animate(Graphics bg)
         {
             if (!t?.IsAlive ?? true)
             {
@@ -83,7 +84,7 @@ namespace moves_of_balls
                     do
                     {
                         Thread.Sleep(30);
-                    } while (Move());
+                    } while (Move(bg));
                 });
                 t.IsBackground = true;
                 t.Start();
