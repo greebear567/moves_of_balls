@@ -28,10 +28,11 @@ namespace moves_of_balls
         public Circle(Size containerSize, Point pos)
         {
             Random some = new Random();
+
             num = some.Next(3, 10);
             startPos = pos;
             _pos = new Point(pos.X,pos.Y);
-            Color = Color.Blue;
+            Color = Color.FromArgb(some.Next(0, 255), some.Next(0, 255), some.Next(0, 255));
             direction = new Vector(pos);
             _diameter = some.Next(20,100);
             _dx = (int)(direction.x/100)+2;
@@ -47,11 +48,6 @@ namespace moves_of_balls
 
         public bool Move(Graphics bg)
         {
-            //if ((_pos.X < _containerSize.Width - _diameter && _pos.Y < _containerSize.Height - _diameter) ||
-            //    (_pos.X-_diameter < 0) ||
-            //    (_pos.X < _containerSize.Width - _diameter && _pos.Y - _diameter < 0) ||
-            //    (_pos.X - _diameter< 0 && _pos.Y - _diameter < 0) 
-            //    )
             if ((_pos.X < startPos.X % Math.Abs(_dx)) || _pos.X > _containerSize.Width - _diameter || _pos.Y < Math.Abs(_dy) || _pos.Y > _containerSize.Height - _diameter)
             {
                 if (num == 0)
